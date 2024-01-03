@@ -27,10 +27,12 @@ export const MlImageCard = ({
     //     title: 'b+w',
     //   },
     // ];
-
-    return (photo as any).current_user_collections.map((collection: any) => ({
-      text: collection.title,
-    }));
+    if ((photo as any)?.tags) {
+      return (photo as any).tags.map((tag: any) => ({
+        title: tag.title,
+      }));
+    }
+    return [];
   }, [photo]);
 
   const createdAt = useMemo(() => {
@@ -51,7 +53,7 @@ export const MlImageCard = ({
           <span>
             by{' '}
             <a
-              className="font-bold"
+              className="font-bold hover:underline"
               target="_blank"
               href={`https://unsplash.com/@${photo.user.username}`}>
               {photo.user.name}
@@ -60,7 +62,7 @@ export const MlImageCard = ({
           <p>Taken on {createdAt}</p>
         </div>
         {tags.length > 0 && (
-          <ul className="flex w-full md:w-[33%] gap-2 md:gap-3 pb-2 md:pb-0">
+          <ul className="flex w-full md:w-1/2 justify-end gap-2 md:gap-3 pb-2 md:pb-0">
             {tags.slice(0, 3).map((tag: any) => (
               <li key={tag.id}>
                 <AtTag {...tag} onClick={() => onClickTag(tag.title)} />
