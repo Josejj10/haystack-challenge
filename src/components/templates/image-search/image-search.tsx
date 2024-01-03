@@ -2,16 +2,24 @@
 
 import { AtButton } from '@/components/atoms/at-button/at-button';
 import { AtInput } from '@/components/atoms/at-input/at-input';
+import { AtLoading } from '@/components/atoms/at-loading/at-loading';
 import { MlImageCard } from '@/components/molecules/ml-image-card/ml-image-card';
-import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { KeyboardEvent, useMemo, useState } from 'react';
 
 export interface TmImageSearchProps {
   data: any;
   onSearch: (text: string) => void;
+  defaultSearchText?: string;
 }
 
-export const TmImageSearch = ({ data, onSearch }: TmImageSearchProps) => {
-  const [searchText, setSearchText] = useState('');
+export const TmImageSearch = ({
+  data,
+  defaultSearchText = '',
+  onSearch,
+}: TmImageSearchProps) => {
+  const [searchText, setSearchText] = useState(defaultSearchText);
+  const router = useRouter();
 
   const images = useMemo(() => {
     if (!data) return [];
@@ -19,15 +27,22 @@ export const TmImageSearch = ({ data, onSearch }: TmImageSearchProps) => {
   }, [data]);
 
   const onClickTag = (text: string) => {
-    console.log('Clicked on tag', text);
-    // TODO Navigate to Tag page
+    router.push(`/tags/${text}`);
   };
 
   const onClickSearch = () => {
     onSearch(searchText);
   };
 
-  if (data === null) return <div>Loading...</div>;
+  const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+
+      onSearch(searchText);
+    }
+  };
+
+  if (data === null) return <AtLoading />;
 
   return (
     <div className="w-full">
@@ -39,6 +54,7 @@ export const TmImageSearch = ({ data, onSearch }: TmImageSearchProps) => {
           value={searchText}
           onChangeValue={t => setSearchText(t)}
           className="w-3/4"
+          onKeyDown={e => onPressEnter(e)}
         />
         <AtButton onClick={onClickSearch} text="Search" />
       </div>
