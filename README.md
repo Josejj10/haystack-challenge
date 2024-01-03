@@ -6,9 +6,17 @@ In order to do it quickly, I boostrapped a project with [`create-next-app`](http
 
 Please keep in mind that, while there may be more simple ways to achieve this same end product, it has been done like it is in order to showcase some of my abilities.
 
-<!-- TODO deploy app -->
-
 The app is deployed in this [site](https://haystack-challenge.vercel.app/), in Vercel.
+
+## Running the project locally
+
+The project uses `yarn` and its node version (specified on .nvmrc)is v18.17.0, so to run the project one could just run:
+
+```sh
+nvm use
+yarn install
+yarn dev
+```
 
 ## Technologies
 
