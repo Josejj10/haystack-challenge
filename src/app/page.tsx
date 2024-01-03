@@ -5,7 +5,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { unsplashClient } from '../services/unsplash-api';
 
 export default function Home() {
-  const [data, setPhotosResponse] = useState(null);
+  const [data, setPhotosResponse] = useState<any>(null);
 
   useEffect(() => {
     console.log(process.env);
@@ -32,7 +32,7 @@ export default function Home() {
         </div>
       ) : (
         <ul className="grid grid-cols-1 gap-3">
-          {data.response.map(photo => (
+          {data.response.map((photo: any) => (
             <li key={photo.id} className="li">
               <Fragment>
                 <Image
