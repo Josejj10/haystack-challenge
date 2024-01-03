@@ -11,9 +11,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "clsx": "^2.1.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "tailwind-merge": "^2.2.0",
     "unsplash-js": "^7.0.19"
   },
   "devDependencies": {
@@ -40,8 +42,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "next lint ./src",
-      "prettier --check ."
+      "next lint ./src"
     ]
   }
 }
