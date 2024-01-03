@@ -5,13 +5,14 @@ import { MlHeader } from '@/components/molecules/ml-header/ml-header';
 import { TmImageSearch } from '@/components/templates/image-search/image-search';
 import { unsplashClient } from '@/services/unsplash-api';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function TagPage({
-  params: { tag },
+  params: { tag: encodedTag },
 }: {
   params: { tag: string };
 }) {
+  const tag = useMemo(() => decodeURI(encodedTag), [encodedTag]);
   const [data, setPhotosResponse] = useState<any>(null);
   const router = useRouter();
 
