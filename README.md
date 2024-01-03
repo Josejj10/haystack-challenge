@@ -7,7 +7,7 @@ In order to do it quickly, I boostrapped a project with [`create-next-app`](http
 Please keep in mind that, while there may be more simple ways to achieve this same end product, it has been done like it is in order to showcase some of my abilities.
 
 <!-- TODO deploy app -->
-<!-- The app is deployed in this [site](), in Vercel. -->
+The app is deployed in this [site](https://haystack-challenge.vercel.app/), in Vercel.
 
 ## Technologies
 
@@ -53,7 +53,7 @@ Here's this project's list, written after inspecting both the challenge requirem
 
 3. ✅ Create the Github Repo and configure CI with Vercel
 
-4. Create issues and branches for components and functionalities
+4. ✅ Create issues and branches for components and functionalities
 
 5. Initial configuration: architecture, tests, code quality (prettier, eslint, commit interceptors with husky) and file structure
 
